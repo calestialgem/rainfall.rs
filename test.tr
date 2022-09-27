@@ -1,0 +1,10 @@
+let ^^^^^a: i4 = 200.0e-1;
+let b: i4 = 5.1e2;~
+var c: i4 = a * (a+b*b-b) / -b;
+c = 000_017_350_00;
+
+let e: f8 = 2.79;
+let p: f8 = 3.14;
+let r     = e/p;
+var f     = -r;
+f = f+e;
