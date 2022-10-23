@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2022 Cem Geçgel <gecgelcem@outlook.com>
-// SPDX-License-Identifier: GPL-3.0-or-later
-
 /// An error that can happen in the Rainfall compilation process. This is NOT a compilation diagnostic or result!
 #[derive(Debug)]
 pub enum Error {
