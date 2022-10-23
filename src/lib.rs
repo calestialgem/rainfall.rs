@@ -26,6 +26,9 @@ impl std::fmt::Display for Error {
 
 impl std::error::Error for Error {}
 
+/// Result with the Rainfall error.
+type Result<T> = std::result::Result<T, Error>;
+
 /// Rainfall workspace that is generic over the source representation.
 struct Workspace<Model> {
     /// Path to the workspace directory.
