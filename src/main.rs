@@ -3,7 +3,8 @@ use std::env;
 
 /// Entry to the Rainfall compiler.
 fn main() {
-    // Get the arguments after the first one, which would be the path to the executable.
+    // Get the arguments after the first one, which would be the path to the
+    // executable.
     let args: Vec<String> = env::args().collect();
     if let Err(error) = run(&args[1..]) {
         println!("{}", error);

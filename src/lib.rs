@@ -1,9 +1,11 @@
-/// An error that can happen in the Rainfall compilation process. This is NOT a compilation diagnostic or result!
+/// An error that can happen in the Rainfall compilation process. This is NOT a
+/// compilation diagnostic or result!
 #[derive(Debug)]
 pub enum Error {
     /// An error happened while reading the command-line arguments.
     ArgumentError(String),
-    /// An error happened while reading or writing Rainfall setting or Thrice code files and directories.
+    /// An error happened while reading or writing Rainfall setting or Thrice
+    /// code files and directories.
     IOError(String, std::io::Error),
 }
 
@@ -50,9 +52,12 @@ enum PackageContents<SourceRepresentation> {
 struct Module<SourceRepresentation> {
     /// Name of the module.
     name: String,
-    /// Portion of contained sources that are directly under this module. Does not include sources that are contained by the module's submodules.
+    /// Portion of contained sources that are directly under this module. Does
+    /// not include sources that are contained by the module's submodules.
     sources: Vec<Source<SourceRepresentation>>,
-    /// Portion of contained submodules that are directly under this module. Does not include submodules that are contained by the module's submodules.
+    /// Portion of contained submodules that are directly under this module.
+    /// Does not include submodules that are contained by the module's
+    /// submodules.
     submodules: Vec<Module<SourceRepresentation>>,
 }
 
