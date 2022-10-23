@@ -22,6 +22,50 @@ impl std::fmt::Display for Error {
 
 impl std::error::Error for Error {}
 
+/// Rainfall workspace that is generic over the source representation.
+struct Workspace<SourceRepresentation> {
+    /// Path to the workspace directory.
+    path: std::path::PathBuf,
+    /// Packages in the workspace.
+    packages: Vec<Package<SourceRepresentation>>,
+}
+
+/// Thrice package that is generic over the source representation.
+struct Package<SourceRepresentation> {
+    /// Name of the package.
+    name: String,
+    /// Contents of the package.
+    contents: PackageContents<SourceRepresentation>,
+}
+
+/// Contents in a Thrice package that is generic over the source representation.
+enum PackageContents<SourceRepresentation> {
+    /// Package as a top-level module directory.
+    Directroy(Module<SourceRepresentation>),
+    /// Package as a single source file.
+    File(Source<SourceRepresentation>),
+}
+
+/// Thrice module that is generic over the source representation.
+struct Module<SourceRepresentation> {
+    /// Name of the module.
+    name: String,
+    /// Portion of contained sources that are directly under this module. Does not include sources that are contained by the module's submodules.
+    sources: Vec<Source<SourceRepresentation>>,
+    /// Portion of contained submodules that are directly under this module. Does not include submodules that are contained by the module's submodules.
+    submodules: Vec<Module<SourceRepresentation>>,
+}
+
+/// Thrice source that is generic over the source representation.
+struct Source<SourceRepresentation> {
+    /// Path to the source file.
+    path: std::path::PathBuf,
+    /// Name of the source.
+    name: String,
+    /// Representation in Rainfall.
+    representation: SourceRepresentation,
+}
+
 /// Loads source files to memory as character arrays.
 mod loader;
 
