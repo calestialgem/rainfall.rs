@@ -66,7 +66,7 @@ Visibility is whether a symbol can be accessed in the definition of another
 symbol.
 
 A symbol is always visible in the source it is defined in. It can be more
-accessable using a visibility modifier. There are three visibility modifiers in
+accessible using a visibility modifier. There are three visibility modifiers in
 Thrice:
 
 - `module` makes a symbol visible in the module it is defined in,

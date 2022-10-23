@@ -1,3 +1,5 @@
+use std::{collections::HashMap, path::PathBuf};
+
 /// An error that can happen in the Rainfall compilation process. This is NOT a
 /// compilation diagnostic or result!
 #[derive(Debug)]
@@ -25,50 +27,50 @@ impl std::fmt::Display for Error {
 impl std::error::Error for Error {}
 
 /// Rainfall workspace that is generic over the source representation.
-struct Workspace<SourceRepresentation> {
+struct Workspace<Model> {
     /// Path to the workspace directory.
-    path: std::path::PathBuf,
+    path: PathBuf,
     /// Packages in the workspace.
-    packages: Vec<Package<SourceRepresentation>>,
+    packages: HashMap<String, Package<Model>>,
 }
 
 /// Thrice package that is generic over the source representation.
-struct Package<SourceRepresentation> {
+struct Package<Model> {
     /// Name of the package.
     name: String,
     /// Contents of the package.
-    contents: PackageContents<SourceRepresentation>,
+    contents: Contents<Model>,
 }
 
 /// Contents in a Thrice package that is generic over the source representation.
-enum PackageContents<SourceRepresentation> {
+enum Contents<Model> {
     /// Package as a top-level module directory.
-    Directroy(Module<SourceRepresentation>),
+    Directory(Module<Model>),
     /// Package as a single source file.
-    File(Source<SourceRepresentation>),
+    File(Source<Model>),
 }
 
 /// Thrice module that is generic over the source representation.
-struct Module<SourceRepresentation> {
+struct Module<Model> {
     /// Name of the module.
     name: String,
     /// Portion of contained sources that are directly under this module. Does
     /// not include sources that are contained by the module's submodules.
-    sources: Vec<Source<SourceRepresentation>>,
+    sources: HashMap<String, Source<Model>>,
     /// Portion of contained submodules that are directly under this module.
     /// Does not include submodules that are contained by the module's
     /// submodules.
-    submodules: Vec<Module<SourceRepresentation>>,
+    submodules: HashMap<String, Module<Model>>,
 }
 
 /// Thrice source that is generic over the source representation.
-struct Source<SourceRepresentation> {
+struct Source<Model> {
     /// Path to the source file.
-    path: std::path::PathBuf,
+    path: PathBuf,
     /// Name of the source.
     name: String,
-    /// Representation in Rainfall.
-    representation: SourceRepresentation,
+    /// Representation of the Thrice source in Rainfall.
+    model: Model,
 }
 
 /// Loads source files to memory as character arrays.
