@@ -21,3 +21,21 @@ impl std::fmt::Display for Error {
 }
 
 impl std::error::Error for Error {}
+
+/// Loads source files to memory as character arrays.
+mod loader;
+
+/// Lexes character arrays to arrays of groups of characters.
+mod lexer;
+
+/// Parses arrays of groups of characters to forests of groups of characters.
+mod parser;
+
+/// Analyzes forests of groups of characters to forests of Thrice objects.
+mod analyzer;
+
+/// Generates a C file from forests of Thrice objects.
+mod generator;
+
+/// Compiles and runs the generated C file.
+mod compiler;
