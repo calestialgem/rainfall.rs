@@ -4,17 +4,10 @@ Rainfall is the compiler for the Thrice language.
 
 Transpiles the Thrice source to C.
 
-This is the version of the Rainfall written in C. Eventually, it will be
+This is the version of the Rainfall is written in Rust. Eventually, it will be
 rewritten in Thrice.
 
 ---
-
-## Setup
-
-Project is written using VS Code and clangd. It is compiled using CMake and
-clang.
-
-VS Code launching settings exist for Windows and Linux.
 
 ## License
 
